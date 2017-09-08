@@ -6,13 +6,26 @@ app.use(express.static(__dirname + '/public'))
 
 app.get('/', function(request, response) {
   response.send('Hello World!');
-  var fs = require('fs');
-  var stream = fs.createWriteStream("my_file.txt");
-    stream.once('open', function(fd) {
-    stream.write("My first row\n");
-    stream.write("My second row\n");
-    stream.end();
-  });
+  
+  
+
+var path = 'public/uploads/file.txt',
+buffer = new Buffer("some content\n");
+
+fs.open(path, 'w', function(err, fd) {
+    if (err) {
+        throw 'error opening file: ' + err;
+    }
+
+    fs.write(fd, buffer, 0, buffer.length, null, function(err) {
+        if (err) throw 'error writing file: ' + err;
+        fs.close(fd, function() {
+            console.log('file written');
+        })
+    });
+});
+
+
 })
 
 app.listen(app.get('port'), function() {

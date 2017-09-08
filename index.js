@@ -7,6 +7,7 @@ app.use(express.static(__dirname + '/public'))
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://w3kjpqeu7a:w3kjpqeu7a@ds129004.mlab.com:29004/w3kjpqeu7a');
 
+var bodyParser = require('body-parser');
 
 app.get('/', function(request, response) {
 

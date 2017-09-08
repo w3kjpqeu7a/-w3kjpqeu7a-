@@ -11,10 +11,10 @@ mongoose.connect('mongodb://w3kjpqeu7a:w3kjpqeu7a@ds129004.mlab.com:29004/w3kjpq
 app.get('/', function(request, response) {
 
  
-  var Cat = mongoose.model('Cat', { name: String });
+  var Users = mongoose.model('Users', { name: String,pass:String });
 
-  var kitty = new Cat({ name: 'Zildjian' });
-  kitty.save(function (err) {
+  var user = new Users({ name: 'Zildjian',pass:'hey' });
+  user.save(function (err) {
     if (err) {
       console.log(err);
     } else {
